@@ -39,7 +39,7 @@ public struct SetFilterType: StaticAcknowledgedProxyConfigurationMessage {
     }
     
     /// The new filter type.
-    public let filterType: ProxyFilerType
+    public let filterType: ProxyFilterType
     
     /// Creates a new Set Filter Type message.
     ///
@@ -49,7 +49,7 @@ public struct SetFilterType: StaticAcknowledgedProxyConfigurationMessage {
     /// - parameter type: The new filter type. Setting the same
     ///                   filter type as was set before will clear
     ///                   the filter.
-    public init(_ type: ProxyFilerType) {
+    public init(_ type: ProxyFilterType) {
         self.filterType = type
     }
     
@@ -57,7 +57,7 @@ public struct SetFilterType: StaticAcknowledgedProxyConfigurationMessage {
         guard parameters.count == 1 else {
             return nil
         }
-        guard let type = ProxyFilerType(rawValue: parameters[0]) else {
+        guard let type = ProxyFilterType(rawValue: parameters[0]) else {
             return nil
         }
         filterType = type

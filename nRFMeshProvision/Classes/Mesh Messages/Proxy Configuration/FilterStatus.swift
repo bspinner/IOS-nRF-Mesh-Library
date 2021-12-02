@@ -38,7 +38,7 @@ public struct FilterStatus: StaticProxyConfigurationMessage {
     }
     
     /// The current filter type.
-    public let filterType: ProxyFilerType
+    public let filterType: ProxyFilterType
     /// Number of addresses in the proxy filter list.
     public let listSize: UInt16
     
@@ -47,7 +47,7 @@ public struct FilterStatus: StaticProxyConfigurationMessage {
     /// - parameter type: The current filter type.
     /// - parameter listSize: Number of addresses in the proxy
     ///                       filter list.
-    public init(_ type: ProxyFilerType, listSize: UInt16) {
+    public init(_ type: ProxyFilterType, listSize: UInt16) {
         self.filterType = type
         self.listSize = listSize
     }
@@ -56,7 +56,7 @@ public struct FilterStatus: StaticProxyConfigurationMessage {
         guard parameters.count == 3 else {
             return nil
         }
-        guard let type = ProxyFilerType(rawValue: parameters[0]) else {
+        guard let type = ProxyFilterType(rawValue: parameters[0]) else {
             return nil
         }
         filterType = type

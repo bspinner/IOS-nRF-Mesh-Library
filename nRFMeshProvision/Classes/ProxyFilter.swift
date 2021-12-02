@@ -30,7 +30,7 @@
 
 import Foundation
 
-public enum ProxyFilerType: UInt8 {
+public enum ProxyFilterType: UInt8 {
     /// An inclusion list filter has an associated inclusion list, which is
     /// a list of destination addresses that are of interest for the Proxy Client.
     /// The inclusion list filter blocks all messages except those targeting
@@ -49,7 +49,7 @@ public protocol ProxyFilterDelegate: AnyObject {
     /// - parameters:
     ///   - type: The current Proxy Filter type.
     ///   - addresses: The addresses in the filter.
-    func proxyFilterUpdated(type: ProxyFilerType, addresses: Set<Address>)
+    func proxyFilterUpdated(type: ProxyFilterType, addresses: Set<Address>)
     
     /// This method is called when the connected Proxy device supports
     /// only a single address in the Proxy Filter list.
@@ -115,7 +115,7 @@ public class ProxyFilter {
     /// The active Proxy Filter type.
     ///
     /// By default the Proxy Filter is set to `.inclusionList`.
-    public internal(set) var type: ProxyFilerType = .inclusionList
+    public internal(set) var type: ProxyFilterType = .inclusionList
     
     /// The connected Proxy Node. This may be `nil` if the connected Node is unknown
     /// to the provisioner, that is if a Node with the proxy Unicast Address was not found
@@ -138,7 +138,7 @@ public extension ProxyFilter {
     /// The filter will be emptied.
     ///
     /// - parameter type: The new proxy filter type.
-    func setType(_ type: ProxyFilerType) {
+    func setType(_ type: ProxyFilterType) {
         send(SetFilterType(type))
     }
     
@@ -436,7 +436,7 @@ private extension ProxyFilter {
 
 // MARK: - Other
 
-extension ProxyFilerType: CustomDebugStringConvertible {
+extension ProxyFilterType: CustomDebugStringConvertible {
     
     public var debugDescription: String {
         switch self {
