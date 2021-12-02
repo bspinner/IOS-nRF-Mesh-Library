@@ -30,6 +30,9 @@
 
 import Foundation
 
+@available(*, renamed: "ProxyFilterType")
+public typealias ProxyFilerType = ProxyFilterType
+
 public enum ProxyFilterType: UInt8 {
     /// An inclusion list filter has an associated inclusion list, which is
     /// a list of destination addresses that are of interest for the Proxy Client.
